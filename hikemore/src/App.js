@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
+import Layout from './Layout/Layout';
+import HikesList from './components/HikesList/HikesList';
+
 
 function App() {
   return (
-    <div className="App">
-      <h1>HikeMore</h1>
-    </div>
+    <Layout>
+      <HikesList />
+    </Layout>
   );
 }
 
