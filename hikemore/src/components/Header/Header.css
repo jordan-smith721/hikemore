@@ -1,0 +1,18 @@
+.banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../../assets/images/hike-banner.jpg");
+    height: 25%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    padding: 10px;
+    text-align: center;
+}
+
+.banner h1 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 4rem;
+    color: ghostwhite;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}

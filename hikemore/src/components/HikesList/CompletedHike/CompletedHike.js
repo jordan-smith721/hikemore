@@ -1,8 +1,9 @@
 import React from 'react';
+import Table from 'react-bootstrap/Table';
 
 const completedHike = (props) => {
     return (
-        <table>
+        <Table className="hike-table" responsive>
             <thead>
             <tr>
                 <th>Trail Name</th>
@@ -21,7 +22,7 @@ const completedHike = (props) => {
                 <td>4.2 Stars</td>
             </tr>  
             </tbody>
-        </table>
+        </Table>
     );
 };
 

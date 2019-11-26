@@ -1,10 +1,11 @@
 import React from 'react';
 import Aux from '../hoc/Auxillary';
 import './Layout.css';
+import Header from '../components/Header/Header.js';
 
 const layout = (props) => (
     <Aux>
-        <div>Header here</div>
+        <Header />
         <main className="content-container">
             {props.children}
         </main>
