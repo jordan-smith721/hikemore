@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 
 const completedHike = (props) => {
     return (
-        <Table className="hike-table" responsive>
+        <Table className="hike-table my-3" responsive>
             <thead>
             <tr>
                 <th>Trail Name</th>

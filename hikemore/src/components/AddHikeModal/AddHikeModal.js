@@ -22,19 +22,29 @@ class AddHikeModal extends Component {
     render() {
         return(
             <Aux>
-                <Button size="lg" className="btn-add" onClick={this.handleShow}>Add a Hike</Button>
-
+                <div style={{textAlign : 'center'}}>
+                    <Button size="lg" className="btn-add" onClick={this.handleShow}>Add a Hike</Button>
+                </div>
                 <Modal show={this.state.showModal} onHide={this.handleClose} centered>
                     <Modal.Header closeButton>
                         <Modal.Title>Add a Hike!</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
-                            <Form.Control as="select">
-                                <option>Hike1</option>
-                                <option>Hike2</option>
-                                <option>Hike3</option>
-                            </Form.Control>
+                            <Form.Group>
+                                <Form.Control as="select">
+                                    <option>State1</option>
+                                    <option>State2</option>
+                                    <option>State3</option>
+                                </Form.Control>
+                            </Form.Group>
+                            <Form.Group>
+                                <Form.Control as="select">
+                                    <option>Hike1</option>
+                                    <option>Hike2</option>
+                                    <option>Hike3</option>
+                                </Form.Control>
+                            </Form.Group>
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
@@ -42,7 +52,6 @@ class AddHikeModal extends Component {
                         <Button className="btn-add">Add Hike</Button>
                     </Modal.Footer>
                 </Modal>
-
             </Aux>
         );
     };

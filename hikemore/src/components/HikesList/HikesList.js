@@ -3,12 +3,13 @@ import Aux from '../../hoc/Auxillary';
 import './HikesList.css';
 import CompletedHike from './CompletedHike/CompletedHike';
 import TodoHike from './TodoHike/TodoHike';
-import Nav from 'react-bootstrap/Nav'
+import Nav from 'react-bootstrap/Nav';
+import AddModal from '../AddHikeModal/AddHikeModal';
 
 class HikesList extends Component {
 
     state = {
-        view : 'todo'
+        view : 'todo',
     };
 
     handleTodoClick= () => {
@@ -19,7 +20,9 @@ class HikesList extends Component {
         this.setState({view: 'completed'});
     }
 
+
     render() {
+
         return (
             <Aux>
                 <Nav variant="tabs" defaultActiveKey="todo-link">
@@ -30,7 +33,10 @@ class HikesList extends Component {
                         <Nav.Link eventKey="completed-link" className="tab" onClick={this.handleCompletedClick}>Completed</Nav.Link>
                     </Nav.Item>
                 </Nav>
-                {this.state.view === 'todo' ? <TodoHike /> : <CompletedHike />}  
+                <section>
+                    {this.state.view === 'todo' ? <Aux> <TodoHike /> <AddModal /> </Aux> : <CompletedHike />}  
+                </section>
+                
             </Aux>  
         );
     };
