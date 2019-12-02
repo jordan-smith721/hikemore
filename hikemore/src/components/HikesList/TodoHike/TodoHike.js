@@ -17,7 +17,7 @@ class TodoHike extends Component {
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
         const url = 'https://hikingapi.azurewebsites.net/api/HikeItems';
       
-        axios.get(proxyurl + url)
+        axios.get(url)
             .then(response => {
                 // console.log(response);
                 // console.log(response.data[0].toDo);
