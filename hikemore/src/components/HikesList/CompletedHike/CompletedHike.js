@@ -1,31 +1,81 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table';
+import axios from 'axios';
+import CompletedTableBody from './CompletedTableBody';
 
-const completedHike = (props) => {
-    return (
-        <Table className="hike-table my-3" responsive>
-            <thead>
-            <tr>
-                <th>Trail Name</th>
-                <th>Length</th>
-                <th>Elevation Gain</th>
-                <th>Location</th>
-                <th>Rating</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>Mailbox</td>
-                <td>9.4 Miles</td>
-                <td>4000ft.</td>
-                <td>Snoqualmie</td>
-                <td>4.2 Stars</td>
-            </tr>  
-            </tbody>
-        </Table>
-    );
+class CompletedHike extends Component {
+
+    state = {
+        completedHikes : []
+    };
+
+    componentDidMount() {
+        const url = 'https://hikingapi.azurewebsites.net/api/HikeItems';
+      
+        axios.get(url)
+            .then(response => {
+
+                const hikeIds = response.data;
+                let idString = "";
+
+                hikeIds.forEach(element => {
+                    if(element.completed === true)
+                    {
+                        idString += element.toDo + ',';
+                    }
+                });
+
+            
+                axios.get('https://www.hikingproject.com/data/get-trails-by-id?ids=%27' + idString + '%27&key=200638014-3dd93782c23a676e212d6ae420598331')
+                    .then(response => {
+                       
+                        const hikeData = response.data.trails;
+
+                        const updatedHikeData = hikeData.map(hike => {
+                            return {
+                                ...hike
+                                
+                            }
+                        });
+
+                        this.setState({completedHIkes : updatedHikeData});
+                    })
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+
+    render () {
+        
+        const completedHikeList = this.state.completedHikes.map(hike => {
+            return <CompletedTableBody key={hike.id} 
+                    trailName={hike.name} length={hike.length}
+                    elevation={hike.ascent} 
+                    location={hike.location}
+                    rating={hike.stars} 
+                    />
+        });
+
+        return (
+            <Table className="hike-table my-3" responsive>
+                <thead>
+                <tr>
+                    <th>Trail Name</th>
+                    <th>Length</th>
+                    <th>Elevation Gain</th>
+                    <th>Location</th>
+                    <th>Rating</th>
+                </tr>
+                </thead>
+                <tbody>
+                    { completedHikeList }
+                </tbody>
+            </Table>
+        );
+    }
 };
 
-export default completedHike;
+export default CompletedHike;
     
 

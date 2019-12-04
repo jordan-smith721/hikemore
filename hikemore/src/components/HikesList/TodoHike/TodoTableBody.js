@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 const todoTableBody = (props) => {
     return (
         <tr>
-            <td><FontAwesomeIcon icon={faMinusCircle} className="delete-btn" onClick={props.clicked} /></td>
+            <td><button  onClick={props.clicked}><FontAwesomeIcon className="delete-btn" icon={faMinusCircle} /></button> </td>
             <td>{props.trailName}</td>
             <td>{props.length} Miles</td>
             <td>{props.elevation} ft.</td>
