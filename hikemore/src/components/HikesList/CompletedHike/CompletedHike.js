@@ -38,7 +38,7 @@ class CompletedHike extends Component {
                             }
                         });
 
-                        this.setState({completedHIkes : updatedHikeData});
+                        this.setState({completedHikes : updatedHikeData});
                     })
             })
             .catch(error => {

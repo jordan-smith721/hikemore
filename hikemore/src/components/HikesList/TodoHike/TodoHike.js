@@ -71,6 +71,27 @@ class TodoHike extends Component {
         });
     };
 
+    completeHikeHandler = (id) => {
+        const url = 'https://hikingapi.azurewebsites.net/api/HikeItems' + id;
+        console.log(id);
+
+        axios.put(url + '/' + id)
+        .then(response => {
+            const hikeData = response.data.trails;
+
+            const updatedHikeData = hikeData.map(hike => {
+                return {
+                    ...hike
+                }
+            });
+
+            this.setState({toDoHikes : updatedHikeData});
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     render() {
 
         const toDoHikeList = this.state.todoHikes.map(hike => {
@@ -79,7 +100,8 @@ class TodoHike extends Component {
                     elevation={hike.ascent} 
                     location={hike.location}
                     rating={hike.stars} 
-                    clicked={() => this.deleteHikeHandler(hike.id)} />
+                    clicked={() => this.deleteHikeHandler(hike.id)} 
+                    completed={() => this.completeHikeHandler(hike.id)} />
         });
 
         return (

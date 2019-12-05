@@ -12,7 +12,7 @@ const todoTableBody = (props) => {
             <td>{props.elevation} ft.</td>
             <td>{props.location}</td>
             <td>{props.rating} Stars</td>
-            <td><Button className="btn-completed">Completed</Button></td>
+            <td><Button onClick={props.completed} className="btn-completed">Completed</Button></td>
         </tr> 
     );
 };
