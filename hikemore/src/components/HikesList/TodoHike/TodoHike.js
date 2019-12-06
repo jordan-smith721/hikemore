@@ -53,22 +53,10 @@ class TodoHike extends Component {
         const url = 'https://hikingapi.azurewebsites.net/api/HikeItems';
 
         console.log(id);
-        axios.delete(url + '/' + id)
-        .then(response => {
-                       
-            const hikeData = response.data.trails;
+        axios.delete(url + '/' + id);
 
-            const updatedHikeData = hikeData.map(hike => {
-                return {
-                    ...hike
-                }
-            });
+        this.forceUpdate();
 
-            this.setState({todoHikes : updatedHikeData});
-        })
-        .catch(error => {
-            console.log(error);
-        });
     };
 
     render() {
