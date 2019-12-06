@@ -4,7 +4,7 @@ import './HikesList.css';
 import CompletedHike from './CompletedHike/CompletedHike';
 import TodoHike from './TodoHike/TodoHike';
 import Nav from 'react-bootstrap/Nav';
-import AddModal from '../AddHikeModal/AddHikeModal';
+
 
 class HikesList extends Component {
 
@@ -34,7 +34,7 @@ class HikesList extends Component {
                     </Nav.Item>
                 </Nav>
                 <section>
-                    {this.state.view === 'todo' ? <Aux> <TodoHike /> <AddModal /> </Aux> : <CompletedHike />}  
+                    {this.state.view === 'todo' ? <TodoHike />: <CompletedHike />}  
                 </section>
                 
             </Aux>  

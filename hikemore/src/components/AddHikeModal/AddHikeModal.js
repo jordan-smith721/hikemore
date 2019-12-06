@@ -5,7 +5,6 @@ import './AddHikeModal.css';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import HikeSelect from './HikeSelect/HikeSelect';
-import axios from 'axios';
 
 class AddHikeModal extends Component {
 
@@ -20,18 +19,6 @@ class AddHikeModal extends Component {
     handleClose = () => {
         this.setState({ showModal : false })
     };
-
-    addHike = () => {
-        let hikeDropDown = document.getElementById('hikes');
-        let hikeId = hikeDropDown.options[hikeDropDown.selectedIndex].value.toString();
-
-        axios.post(
-            'https://hikingapi.azurewebsites.net/api/HikeItems',
-            { "toDo": hikeId, "completed": false },
-            { headers: { 'Content-Type': 'application/json' } }
-        );
-        this.handleClose();
-    }
 
     render() {
         return(
@@ -50,7 +37,7 @@ class AddHikeModal extends Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button className="btn-close" onClick={this.handleClose}>Close</Button>
-                        <Button className="btn-add" onClick={this.addHike}>Add Hike</Button>
+                        <Button className="btn-add" onClick={this.props.clicked}>Add Hike</Button>
                     </Modal.Footer>
                 </Modal>
             </Aux>

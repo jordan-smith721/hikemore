@@ -35,7 +35,7 @@ class HikeSelect extends Component {
     getHikesHandler = (event) => {
         const selectedState = event.target.value;
 
-        if (selectedState == '') {
+        if (selectedState === '') {
             this.setState({
                 hikes: []
             })
