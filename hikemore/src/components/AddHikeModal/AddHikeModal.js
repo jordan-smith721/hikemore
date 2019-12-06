@@ -4,6 +4,8 @@ import Aux from '../../hoc/Auxillary';
 import './AddHikeModal.css';
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import HikeSelect from './HikeSelect/HikeSelect';
+import axios from 'axios';
 
 class AddHikeModal extends Component {
 
@@ -19,6 +21,18 @@ class AddHikeModal extends Component {
         this.setState({ showModal : false })
     };
 
+    addHike = () => {
+        let hikeDropDown = document.getElementById('hikes');
+        let hikeId = hikeDropDown.options[hikeDropDown.selectedIndex].value.toString();
+
+        axios.post(
+            'https://hikingapi.azurewebsites.net/api/HikeItems',
+            { "toDo": hikeId, "completed": false },
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+        this.handleClose();
+    }
+
     render() {
         return(
             <Aux>
@@ -31,25 +45,12 @@ class AddHikeModal extends Component {
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
-                            <Form.Group>
-                                <Form.Control as="select">
-                                    <option>State1</option>
-                                    <option>State2</option>
-                                    <option>State3</option>
-                                </Form.Control>
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Control as="select">
-                                    <option>Hike1</option>
-                                    <option>Hike2</option>
-                                    <option>Hike3</option>
-                                </Form.Control>
-                            </Form.Group>
+                            <HikeSelect />
                         </Form>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button className="btn-close" onClick={this.handleClose}>Close</Button>
-                        <Button className="btn-add">Add Hike</Button>
+                        <Button className="btn-add" onClick={this.addHike}>Add Hike</Button>
                     </Modal.Footer>
                 </Modal>
             </Aux>
