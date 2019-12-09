@@ -5,12 +5,14 @@ import "./TodoHike.css";
 import TodoTableBody from "./TodoTableBody";
 import axios from "axios";
 import AddModal from '../../AddHikeModal/AddHikeModal';
+import AddHikeModal from "../../AddHikeModal/AddHikeModal";
 
 
 
 class TodoHike extends Component {
   state = {
-    todoHikes: []
+    todoHikes: [],
+    modalState : false
   };
 
   componentDidMount() {
@@ -112,9 +114,7 @@ class TodoHike extends Component {
             }).concat(hikeData[0]);
 
             this.setState({ todoHikes: updatedState});
-          });
-
-          
+          });          
     });
   }
 
@@ -150,7 +150,7 @@ class TodoHike extends Component {
           </thead>
           <tbody>{toDoHikeList}</tbody>
         </Table>
-        <AddModal clicked={() => this.addHikeHandler()} />
+        <AddModal modalState={this.state.modalState} clicked={() => this.addHikeHandler()} />
       </Aux>
     );
   }

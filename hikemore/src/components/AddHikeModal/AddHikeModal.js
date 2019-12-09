@@ -9,7 +9,7 @@ import HikeSelect from './HikeSelect/HikeSelect';
 class AddHikeModal extends Component {
 
     state = {
-        showModal : false
+        showModal : this.props.modalState
     };
 
     handleShow = () => {
@@ -19,6 +19,11 @@ class AddHikeModal extends Component {
     handleClose = () => {
         this.setState({ showModal : false })
     };
+
+    postAndClose = () => {
+        this.props.clicked();
+        this.handleClose();
+    }
 
     render() {
         return(
@@ -37,7 +42,7 @@ class AddHikeModal extends Component {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button className="btn-close" onClick={this.handleClose}>Close</Button>
-                        <Button className="btn-add" onClick={this.props.clicked}>Add Hike</Button>
+                        <Button className="btn-add" onClick={this.postAndClose}>Add Hike</Button>
                     </Modal.Footer>
                 </Modal>
             </Aux>
